@@ -12,7 +12,10 @@ Prefer the built-in Read, Grep, and Glob tools over Bash commands for searching 
 
 | Folder | Purpose | Stack |
 |---|---|---|
-| _none registered yet. Add them to `repos.json` and run the clone script._ | | |
+| `subtrack-backend/` | Backend API (contract owner for all clients) | TBD (empty repo) |
+| `subtrack-web/` | Web app | TBD (empty repo) |
+| `subtrack-ios/` | iOS app | TBD (empty repo) |
+| `subtrack-android/` | Android app | TBD (empty repo) |
 
 Each project repo has its own `CLAUDE.md` / `AGENTS.md`. Read it before changing that repo; its rules win
 for code inside it.

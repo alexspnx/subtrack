@@ -1,4 +1,9 @@
 {
   "$comment": "Project repos cloned into this workspace by scripts/clone-repos.mjs. `dir` is the folder name at the workspace root; `branch` is optional (defaults to the remote's default branch).",
-  "repos": []
+  "repos": [
+    { "dir": "subtrack-backend", "url": "git@github.com:alexspnx/subtrack-backend.git" },
+    { "dir": "subtrack-web", "url": "git@github.com:alexspnx/subtrack-web.git" },
+    { "dir": "subtrack-ios", "url": "git@github.com:alexspnx/subtrack-ios.git" },
+    { "dir": "subtrack-android", "url": "git@github.com:alexspnx/subtrack-android.git" }
+  ]
 }

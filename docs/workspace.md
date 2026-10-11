@@ -8,8 +8,8 @@ through the overrides in `_bmad/custom/`, and they win over any step that assume
 - The workspace root (`subtrack/`) is its own git repo. It holds planning and coordination only: BMAD
   (`_bmad/`, `.claude/skills/`), BMAD output (`_bmad-output/`), long-term knowledge (`docs/`), the
   repo manifest (`repos.json`), and `scripts/`.
-- Project code lives in the repos listed in `repos.json`, cloned as sibling folders at the root (for
-  example `backend/`, `web/`, `ios/`, `android/`). Each is an independent git repo. The root
+- Project code lives in the repos listed in `repos.json`, cloned as sibling folders at the root:
+  `subtrack-backend/`, `subtrack-web/`, `subtrack-ios/`, `subtrack-android/`. Each is an independent git repo. The root
   `.gitignore` is an include-list, so these folders are never tracked by the root repo.
 - Planning artifacts (briefs, PRDs, UX, architecture, epics, specs, sprint status) are written to the
   root `_bmad-output/` and are shared by every repo. Never write them inside a project repo.
@@ -17,11 +17,11 @@ through the overrides in `_bmad/custom/`, and they win over any step that assume
 ## Specs and stories
 
 - Every task, file path and Code Map entry in a spec starts with the repo folder, for example
-  `backend/src/Api/Users/UsersController.cs`, so it is clear which repo each change lands in.
-- A spec lists the repos it touches in its frontmatter as `repos: [backend, web]`.
+  `subtrack-backend/src/Api/Users/UsersController.cs`, so it is clear which repo each change lands in.
+- A spec lists the repos it touches in its frontmatter as `repos: [subtrack-backend, subtrack-web]`.
 - One user-facing goal may span several repos. Do not split a story only because it crosses repos.
-- Order cross-repo work by contract: the side that defines an API, schema or event (usually the backend)
-  is implemented and verified first; clients (web, ios, android) follow and are built against it.
+- Order cross-repo work by contract: the side that defines an API, schema or event (usually `subtrack-backend`)
+  is implemented and verified first; clients (`subtrack-web`, `subtrack-ios`, `subtrack-android`) follow and are built against it.
 - Once the contract is fixed, independent client repos can be implemented by parallel subagents, one per
   repo, each given the spec and told which repo it owns.
 
@@ -36,7 +36,7 @@ repo, never the workspace root, unless the change is only to root files (docs, B
 - **Branches:** when an affected repo is on its default branch, create the same feature branch name in
   every affected repo (for example `feat/<spec-slug>`) before changing code.
 - **Baseline:** record one commit per repo in the spec frontmatter, as
-  `baseline_commit: { backend: <full sha>, web: <full sha> }`.
+  `baseline_commit: { subtrack-backend: <full sha>, subtrack-web: <full sha> }`.
 - **Diff for review:** build one unified diff covering all affected repos, with paths prefixed by the
   repo folder: `git -C <repo> diff --src-prefix=a/<repo>/ --dst-prefix=b/<repo>/ <baseline>` per repo,
   plus each untracked file via `git -C <repo> ls-files --others --exclude-standard` and

@@ -47,28 +47,27 @@ subtrack/
 
 ## Project repos
 
-None registered yet. Add an entry to `repos.json` for each repo, then run the clone script:
+| Folder | Purpose | Remote |
+|---|---|---|
+| `subtrack-backend/` | Backend API | `git@github.com:alexspnx/subtrack-backend.git` |
+| `subtrack-web/` | Web app | `git@github.com:alexspnx/subtrack-web.git` |
+| `subtrack-ios/` | iOS app | `git@github.com:alexspnx/subtrack-ios.git` |
+| `subtrack-android/` | Android app | `git@github.com:alexspnx/subtrack-android.git` |
 
-```json
-{
-  "repos": [
-    { "dir": "backend", "url": "git@github.com:<org>/<repo>.git", "branch": "main" }
-  ]
-}
-```
+To add a repo, add an entry to `repos.json` (`dir`, `url`, optional `branch`) and run the clone script.
 
 | Command | What it does |
 |---|---|
 | `node scripts/clone-repos.mjs` | Clones repos that are missing; leaves existing ones alone |
 | `node scripts/clone-repos.mjs --pull` | Also fast-forwards existing repos that have no local changes |
 | `node scripts/clone-repos.mjs --status` | Shows branch, clean/dirty and ahead/behind for each repo |
-| `... --only backend,web` | Limits any of the above to some repos |
+| `... --only subtrack-backend,subtrack-web` | Limits any of the above to some repos |
 
 ## Git
 
 - The root `.gitignore` is an **include-list**: everything is ignored except the workspace files listed in
   it. Project repos are never committed here. To version a new root-level file, add a `!/<name>` line.
-- For a project repo, run git inside it (`cd backend`, or `git -C backend …`), or ask Claude to.
+- For a project repo, run git inside it (`cd subtrack-backend`, or `git -C subtrack-backend …`), or ask Claude to.
 - Feature work that spans repos uses the same branch name in each affected repo, with one local commit
   per repo. Claude never pushes unless asked. Details are in [`docs/workspace.md`](docs/workspace.md).
 

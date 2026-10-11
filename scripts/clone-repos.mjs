@@ -66,7 +66,8 @@ function loadRepos() {
 }
 
 function describe(path) {
-  const branch = git(path, 'rev-parse', '--abbrev-ref', 'HEAD').out || '?';
+  const branch = git(path, 'symbolic-ref', '--short', 'HEAD').out || git(path, 'rev-parse', '--short', 'HEAD').out || '?';
+  if (!git(path, 'rev-parse', '--verify', '-q', 'HEAD').ok) return `${branch} (empty repo, no commits)`;
   const dirty = git(path, 'status', '--porcelain').out ? 'dirty' : 'clean';
   const counts = git(path, 'rev-list', '--left-right', '--count', '@{upstream}...HEAD');
   const tracking = counts.ok
