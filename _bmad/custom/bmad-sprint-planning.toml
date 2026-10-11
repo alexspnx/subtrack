@@ -1,0 +1,3 @@
+# Workspace override: this project spans several git repos. See docs/workspace.md.
+[workflow]
+persistent_facts = ["file:{project-root}/docs/workspace.md"]

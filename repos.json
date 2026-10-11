@@ -1,0 +1,4 @@
+{
+  "$comment": "Project repos cloned into this workspace by scripts/clone-repos.mjs. `dir` is the folder name at the workspace root; `branch` is optional (defaults to the remote's default branch).",
+  "repos": []
+}

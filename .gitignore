@@ -1,0 +1,26 @@
+# Include-list: ignore everything at the root, then re-include only what belongs to the
+# workspace root repo. Project repos (backend, web, ios, android) are cloned next to these
+# files by scripts/clone-repos.mjs and stay ignored here — each is its own git repo.
+# When you add a root-level file or folder that should be versioned, add a `!` line below.
+/*
+
+!/.gitignore
+!/CLAUDE.md
+!/README.md
+!/repos.json
+!/scripts/
+!/docs/
+!/_bmad/
+/_bmad/config.user.toml
+!/_bmad-output/
+
+# Claude Code: shared skills, agents, commands and settings only (not personal settings)
+!/.claude/
+/.claude/*
+!/.claude/skills/
+!/.claude/agents/
+!/.claude/commands/
+!/.claude/settings.json
+
+# Never version OS noise, even inside included folders
+.DS_Store
