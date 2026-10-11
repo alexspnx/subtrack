@@ -74,8 +74,9 @@ To add a repo, add an entry to `repos.json` (`dir`, `url`, optional `branch`) an
 - The root `.gitignore` is an **include-list**: everything is ignored except the workspace files listed in
   it. Project repos are never committed here. To version a new root-level file, add a `!/<name>` line.
 - For a project repo, run git inside it (`cd subtrack-backend`, or `git -C subtrack-backend …`), or ask Claude to.
-- Feature work that spans repos uses the same branch name in each affected repo, with one local commit
-  per repo. Claude never pushes unless asked. Details are in [`docs/workspace.md`](docs/workspace.md).
+- All work is committed directly on `main` in every repo (no feature branches or PRs), with one commit
+  per affected repo. Only `main` is pushed, and Claude pushes only when asked. Details are in
+  [`docs/workspace.md`](docs/workspace.md).
 
 ## BMAD
 

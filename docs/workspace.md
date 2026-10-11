@@ -31,10 +31,10 @@ through the overrides in `_bmad/custom/`, and they win over any step that assume
 repo, never the workspace root, unless the change is only to root files (docs, BMAD config, scripts).
 
 - **Sanity check:** run `git -C <repo> status` and `git -C <repo> branch --show-current` for every
-  affected repo. A dirty tree or mismatched branch in any of them is a HALT-and-ask condition. Changes
-  in the root repo's `_bmad-output/` and `docs/` are expected and do not count as dirty.
-- **Branches:** when an affected repo is on its default branch, create the same feature branch name in
-  every affected repo (for example `feat/<spec-slug>`) before changing code.
+  affected repo. A dirty tree, or any branch other than `main`, in any of them is a HALT-and-ask
+  condition. Changes in the root repo's `_bmad-output/` and `docs/` are expected and do not count as dirty.
+- **Branches:** work and commit directly on `main` in every repo. Never create feature branches or open
+  PRs, even where a BMAD step says to; this rule wins.
 - **Baseline:** record one commit per repo in the spec frontmatter, as
   `baseline_commit: { subtrack-backend: <full sha>, subtrack-web: <full sha> }`.
 - **Diff for review:** build one unified diff covering all affected repos, with paths prefixed by the
@@ -42,7 +42,8 @@ repo, never the workspace root, unless the change is only to root files (docs, B
   plus each untracked file via `git -C <repo> ls-files --others --exclude-standard` and
   `git -C <repo> diff --no-index /dev/null <file>`. Do not `git add` to build the diff.
 - **Commits:** commit locally in each affected repo separately, using that repo's own commit-message
-  convention (see its `CLAUDE.md`). Never push, open PRs, or touch remotes unless the user asks.
+  convention (see its `CLAUDE.md`). Never push or touch remotes unless the user asks, and then push only
+  `main`.
 - **Root repo:** never stage or commit project-repo files from the root. Commit root changes (specs,
   sprint status, docs) only when the user asks.
 

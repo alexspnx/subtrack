@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-10-11 (ST-003 done, feature branch pushed; not merged)
+Last updated: 2026-10-11 (ST-003 merged to `main` via PR #1; repos now work on `main` only)
 
 Single source of truth for where the project is and what comes next. Update it after every task, story or
 decision (see the root `CLAUDE.md`).
@@ -8,14 +8,13 @@ decision (see the root `CLAUDE.md`).
 ## Current phase
 
 **M0: validate and inspect.** Planning docs and stack decisions are done; the backend is bootstrapped
-from the template (ST-001 done, on `main`) and the API contract is defined (ST-003 done, on its feature
-branch, not merged). Next: merge ST-003, then ST-004.
+from the template (ST-001 done) and the API contract is defined (ST-003 done), both on `main`. Next: ST-004.
 
 ## Repos
 
 | Repo | State |
 |---|---|
-| `subtrack-backend/` | `main` pushed at `140a405` (ST-001 fast-forwarded in from `feat/st-001-bootstrap-backend` on 2026-10-11, no PR; baseline was `6275905`): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. Branch `feat/st-003-contracts-and-recurrence-examples` at `29c80ff` (pushed to `origin`, no PR yet): ST-003 contract doc + fixture. |
+| `subtrack-backend/` | `main` pushed at `274f94f` (ST-001 fast-forwarded in at `140a405`; ST-003 `29c80ff` merged via PR #1; baseline was `6275905`): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. ST-003 contract doc + fixture in `docs/`. Leftover branch `feat/st-003-contracts-and-recurrence-examples` (local and `origin`) is fully merged. |
 | `subtrack-web/` | Empty (no commits, nothing to push). |
 | `subtrack-ios/` | Empty (no commits, nothing to push). |
 | `subtrack-android/` | Empty (no commits, nothing to push). |
@@ -55,16 +54,16 @@ Nothing.
 
 ## Next steps
 
-1. Merge ST-003 into `subtrack-backend` `main` (branch pushed; PR or merge only when asked).
-2. ST-004 (account, Identity, owner isolation, first migration; also the WebAPI integration-test project and the migration apply strategy deferred from the ST-001 review).
-3. ST-005 picks up the contract plumbing: JSON options (camelCase, string enums, decimal-string money, `Z`
+1. ST-004 (account, Identity, owner isolation, first migration; also the WebAPI integration-test project and the migration apply strategy deferred from the ST-001 review).
+2. ST-005 picks up the contract plumbing: JSON options (camelCase, string enums, decimal-string money, `Z`
    timestamps), the `errors`-array ProblemDetails mapping replacing ASP.NET's default, the ISO 4217 table,
    `ServiceErrorCode.VersionConflict`.
-4. Small cleanups from `deferred-work.md` when convenient (Grains docs/tests, structure-guardian controller rule,
+3. Small cleanups from `deferred-work.md` when convenient (Grains docs/tests, structure-guardian controller rule,
    git-commit wording, `docs/` in the `.slnx`-exclusion lines).
 
 ## Open decisions / blockers
 
 - None blocking.
+- Decided 2026-10-11: every repo works and commits directly on `main` (no feature branches, no PRs); only `main` is pushed, and only when asked.
 - Decided 2026-10-11: WebAPI integration tests (`/health`, missing connection string) are deferred from the ST-001 review to ST-004.
 - Still open per the brief §16: durable-job integration (needed by ST-008).

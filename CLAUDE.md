@@ -26,8 +26,10 @@ for code inside it.
 ## Hard rules
 
 - **Git is per repo.** Git commands at the root affect only root files. For a project repo use
-  `git -C <repo> …`. Never stage or commit project-repo files from the root, and never push, open PRs, or
-  change remotes unless the user asks.
+  `git -C <repo> …`. Never stage or commit project-repo files from the root, and never push or change
+  remotes unless the user asks.
+- **Main only.** In every repo (root and project repos) work and commit directly on `main`: no feature
+  branches, no PRs. Only `main` is ever pushed.
 - **Run tooling inside the repo** it belongs to (build, test, lint, package installs).
 - **Planning artifacts live at the root** in `_bmad-output/`, never inside a project repo.
 - **Multi-repo rules for BMAD** (spec paths prefixed with the repo folder, per-repo baselines, branches
