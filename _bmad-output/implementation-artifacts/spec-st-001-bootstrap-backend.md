@@ -2,7 +2,7 @@
 title: 'ST-001: Bootstrap subtrack-backend from the template'
 type: 'chore'
 created: '2026-10-11'
-status: 'in-progress'
+status: 'done'
 route: 'dispatch'
 review_loop_iteration: 0
 repos: [subtrack-backend]
@@ -78,7 +78,7 @@ No CI workflow and no migrations in this story.
 
 *Phase D: docs and finish*
 - [x] **ST-001.12 Rewrite docs and Claude tooling.** Root and per-folder `CLAUDE.md`, `README.md`, `.claude/agents/structure-guardian.md`, `.claude/skills/*`: no Orleans, WebAPI-only run instructions, Postgres prerequisites, `ST-xxx` tickets, template origin (`f93b5a8`). Done when: `Orleans|InRealLife|GenerateSerializer` matches only ADR-reference prose.
-- [ ] **ST-001.13 Final verification and review.** Run the three verification commands and the manual checks below, then `bmad-code-review` on the branch. Done when: all acceptance criteria hold.
+- [x] **ST-001.13 Final verification and review.** Run the three verification commands and the manual checks below, then `bmad-code-review` on the branch. Done when: all acceptance criteria hold.
 
 **Acceptance Criteria:**
 - Given the bootstrapped repo, when the three verification commands run, then all succeed with 0 warnings.
@@ -96,11 +96,12 @@ No CI workflow and no migrations in this story.
 
 Code review 2026-10-11 of `feat/st-001-bootstrap-backend` (`6275905..c61f573`), 4 layers (blind-hunter,
 edge-case-hunter, verification-gap, acceptance-auditor), none failed. All four ACs verified to hold.
+Patches applied in `subtrack-backend` `140a405` (build 0 warnings, 86 tests pass, `dotnet format` clean).
 
 - [x] [Review][Defer] No automated test covers the WebAPI wiring — `/health` (200/503) and the fail-fast on a missing `ConnectionStrings:SubTrack` are checked only by hand; nothing under `tests/` builds the host, so removing `AddDbContextCheck` or the `/health` route keeps `dotnet test` green. `tests/IntegrationTests/` is empty. [subtrack-backend/src/ApplicationServices/SubTrack.WebAPI/Program.cs:12] — deferred (owner decision 2026-10-11): build the WebAPI integration-test project in ST-004, which adds the first migration and needs DB tests anyway [medium; verification-gap+blind-hunter]
-- [ ] [Review][Patch] Empty or whitespace connection string passes the `?? throw` guard and fails later inside Npgsql [subtrack-backend/src/Infrastructure/SubTrack.EntityFramework/ServiceCollectionExtensions.cs:13] [low; edge-case-hunter+blind-hunter]
-- [ ] [Review][Patch] Missing final newline in the new `.config/dotnet-tools.json` and in the touched `Directory.Packages.props` (`.editorconfig` `insert_final_newline = true`; `dotnet format` does not check these) [subtrack-backend/.config/dotnet-tools.json] [low; blind-hunter+acceptance-auditor]
-- [ ] [Review][Patch] Compose publishes Postgres with a committed password on all host interfaces; bind to `127.0.0.1:5432:5432` [subtrack-backend/devops/docker-compose.yml:12] [low; blind-hunter]
+- [x] [Review][Patch] Empty or whitespace connection string passes the `?? throw` guard and fails later inside Npgsql [subtrack-backend/src/Infrastructure/SubTrack.EntityFramework/ServiceCollectionExtensions.cs:13] [low; edge-case-hunter+blind-hunter]
+- [x] [Review][Patch] Missing final newline in the new `.config/dotnet-tools.json` and in the touched `Directory.Packages.props` (`.editorconfig` `insert_final_newline = true`; `dotnet format` does not check these) [subtrack-backend/.config/dotnet-tools.json] [low; blind-hunter+acceptance-auditor]
+- [x] [Review][Patch] Compose publishes Postgres with a committed password on all host interfaces; bind to `127.0.0.1:5432:5432` [subtrack-backend/devops/docker-compose.yml:12] [low; blind-hunter]
 - [x] [Review][Defer] Garbled breaking-change bullet after removing SignalR: "…response shape (`ViewModels`), contract;" [subtrack-backend/.claude/skills/git-commit/SKILL.md:48] — deferred: fix edits an agent-context file (one-word fix) [low; all 4 layers]
 - [x] [Review][Defer] ADR 0001 not enforced by tests: a new `src/Grains` project or `Microsoft.Orleans.*` package passes every architecture test [subtrack-backend/tests/ArchitectureTests/SubTrack.ArchitectureTests/ProjectReferenceTests.cs:17] — deferred: guard against future drift, not a regression; one `Fact` later [low; verification-gap+edge-case-hunter]
 - [x] [Review][Defer] Architecture-test docs vs code on `Grains`: `tests/ArchitectureTests/CLAUDE.md:18` says unit tests reference a `Services` project while `FindProjectUnderTest` still accepts `Grains`; `AllowedReferences` lets Services/ApplicationServices reference `Grains`, root `CLAUDE.md` diagram does not [subtrack-backend/tests/ArchitectureTests/CLAUDE.md:18] — deferred: agent-context file [low; blind-hunter]
