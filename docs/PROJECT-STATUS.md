@@ -1,6 +1,6 @@
 # Project status
 
-Last updated: 2026-10-11 (ST-001 done; PR for `feat/st-001-bootstrap-backend` not opened yet)
+Last updated: 2026-10-11 (ST-003 done, feature branch pushed; not merged)
 
 Single source of truth for where the project is and what comes next. Update it after every task, story or
 decision (see the root `CLAUDE.md`).
@@ -8,13 +8,14 @@ decision (see the root `CLAUDE.md`).
 ## Current phase
 
 **M0: validate and inspect.** Planning docs and stack decisions are done; the backend is bootstrapped
-from the template (ST-001 done: all 13 tasks, code review passed). Next: merge ST-001, then ST-003 / ST-004.
+from the template (ST-001 done, on `main`) and the API contract is defined (ST-003 done, on its feature
+branch, not merged). Next: merge ST-003, then ST-004.
 
 ## Repos
 
 | Repo | State |
 |---|---|
-| `subtrack-backend/` | `main` pushed at baseline `6275905` (template renamed to `SubTrack`). Branch `feat/st-001-bootstrap-backend` (10 commits, pushed to `origin` up to `140a405`; no PR yet): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. |
+| `subtrack-backend/` | `main` pushed at `140a405` (ST-001 fast-forwarded in from `feat/st-001-bootstrap-backend` on 2026-10-11, no PR; baseline was `6275905`): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. Branch `feat/st-003-contracts-and-recurrence-examples` at `29c80ff` (pushed to `origin`, no PR yet): ST-003 contract doc + fixture. |
 | `subtrack-web/` | Empty (no commits, nothing to push). |
 | `subtrack-ios/` | Empty (no commits, nothing to push). |
 | `subtrack-android/` | Empty (no commits, nothing to push). |
@@ -33,16 +34,34 @@ from the template (ST-001 done: all 13 tasks, code review passed). Next: merge S
   - ST-001.12: root and per-folder `CLAUDE.md`, `README.md`, `structure-guardian` agent and `git-commit` skill rewritten for the WebAPI-only SubTrack backend.
   - ST-001.13: verification commands and `/health` check pass; `bmad-code-review` (4 layers) confirmed all 4 ACs. 3 low patches applied in `140a405` (whitespace connection-string guard, Postgres port bound to `127.0.0.1`, final newlines); 11 findings deferred to `_bmad-output/implementation-artifacts/deferred-work.md`; 11 rejected.
 
+- **ST-003: API contract conventions and recurrence examples** (spec `done`, 2026-10-11):
+  `_bmad-output/implementation-artifacts/spec-st-003-contracts-and-recurrence-examples.md`. Docs + fixture only,
+  `subtrack-backend` commit `29c80ff` on `feat/st-003-contracts-and-recurrence-examples` (baseline `140a405`).
+  - `subtrack-backend/docs/api-contract.md`: normative wire rules (versioning, JSON, IDs, money, dates, errors,
+    concurrency with `409 versionConflict`, idempotency, paging, ordering, date ranges, ownership) and the
+    calculation rules (schedules, schedule versions, trial, lifecycle, prices, item validation, next renewal,
+    exact monthly equivalent, forecast).
+  - `subtrack-backend/docs/recurrence-examples.json`: 97 canonical cases for ST-006 and the clients,
+    independently recomputed (all match).
+  - Owner decisions: docs + fixture only; all active ISO 4217 currencies; phased breaking-change policy
+    (`/api/v2` alongside `v1` for 6 months from the first public store release).
+  - Review: 2 passes (3 layers). Pass 1 → spec amended and re-implemented; pass 2 → 12 patches. Items deferred
+    to `deferred-work.md` (agent-context files: Models attribute rules vs automatic 400s, git-commit wording,
+    `docs/` missing from the `.slnx`-exclusion lines).
+
 ## In progress
 
 Nothing.
 
 ## Next steps
 
-1. Open a PR for `feat/st-001-bootstrap-backend` into `main` (branch fully pushed).
-2. ST-003 (contracts and recurrence examples; also pick up the deferred API-versioning rule).
-3. ST-004 (account, Identity, owner isolation, first migration; also the WebAPI integration-test project and the migration apply strategy deferred from the ST-001 review).
-4. Small cleanups from `deferred-work.md` when convenient (garbled git-commit skill bullet, Grains docs/tests, structure-guardian controller rule).
+1. Merge ST-003 into `subtrack-backend` `main` (branch pushed; PR or merge only when asked).
+2. ST-004 (account, Identity, owner isolation, first migration; also the WebAPI integration-test project and the migration apply strategy deferred from the ST-001 review).
+3. ST-005 picks up the contract plumbing: JSON options (camelCase, string enums, decimal-string money, `Z`
+   timestamps), the `errors`-array ProblemDetails mapping replacing ASP.NET's default, the ISO 4217 table,
+   `ServiceErrorCode.VersionConflict`.
+4. Small cleanups from `deferred-work.md` when convenient (Grains docs/tests, structure-guardian controller rule,
+   git-commit wording, `docs/` in the `.slnx`-exclusion lines).
 
 ## Open decisions / blockers
 
