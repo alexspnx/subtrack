@@ -14,7 +14,7 @@ from the template (ST-001 done: all 13 tasks, code review passed). Next: merge S
 
 | Repo | State |
 |---|---|
-| `subtrack-backend/` | `main` pushed at baseline `6275905` (template renamed to `SubTrack`). Branch `feat/st-001-bootstrap-backend` (10 commits, tracks `origin`; the review-patch commit `140a405` is not pushed yet; no PR yet): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. |
+| `subtrack-backend/` | `main` pushed at baseline `6275905` (template renamed to `SubTrack`). Branch `feat/st-001-bootstrap-backend` (10 commits, pushed to `origin` up to `140a405`; no PR yet): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. |
 | `subtrack-web/` | Empty (no commits, nothing to push). |
 | `subtrack-ios/` | Empty (no commits, nothing to push). |
 | `subtrack-android/` | Empty (no commits, nothing to push). |
@@ -39,7 +39,7 @@ Nothing.
 
 ## Next steps
 
-1. Push `140a405` and open a PR for `feat/st-001-bootstrap-backend` into `main`.
+1. Open a PR for `feat/st-001-bootstrap-backend` into `main` (branch fully pushed).
 2. ST-003 (contracts and recurrence examples; also pick up the deferred API-versioning rule).
 3. ST-004 (account, Identity, owner isolation, first migration; also the WebAPI integration-test project and the migration apply strategy deferred from the ST-001 review).
 4. Small cleanups from `deferred-work.md` when convenient (garbled git-commit skill bullet, Grains docs/tests, structure-guardian controller rule).
