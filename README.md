@@ -39,6 +39,7 @@ subtrack/
 │   └── clone-repos.mjs     # clones / updates / reports on the project repos
 ├── docs/
 │   ├── workspace.md        # multi-repo rules that BMAD workflows follow
+│   ├── PROJECT-STATUS.md   # current status and next steps (kept up to date after every task)
 │   ├── subtrack-project-plan.md  # product and engineering brief (requirements, domain rules, milestones)
 │   ├── template-mapping.md # backend template inspection: real paths, verified commands, gaps
 │   └── decisions/          # architecture decision records (ADRs)

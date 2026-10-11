@@ -17,7 +17,7 @@ Prefer the built-in Read, Grep, and Glob tools over Bash commands for searching 
 | `subtrack-ios/` | iOS app | Swift, SwiftUI, iOS 17+ (empty repo) |
 | `subtrack-android/` | Android app | Kotlin, Jetpack Compose, API 26+ (empty repo) |
 
-Key docs: product brief `docs/subtrack-project-plan.md`, backend template mapping `docs/template-mapping.md`,
+Key docs: current status and next steps `docs/PROJECT-STATUS.md` (read first), product brief `docs/subtrack-project-plan.md`, backend template mapping `docs/template-mapping.md`,
 decisions `docs/decisions/`. Read the relevant ones before work, not all of them.
 
 Each project repo has its own `CLAUDE.md` / `AGENTS.md`. Read it before changing that repo; its rules win
@@ -95,6 +95,11 @@ invoked by name.
 - Update BMAD: `npx bmad-method@<version> install --directory . --action update` (pin a version).
 
 ## Keeping docs current
+
+**Always keep `docs/PROJECT-STATUS.md` current.** It is the single place that says where the project is and
+what comes next. Read it at the start of any work. Update it in the same turn whenever a task, story or
+milestone changes state (started, done, blocked), a decision is made, or the next steps change: tick the
+task table, move items between *In progress* / *Done*, refresh *Next steps* and the *Last updated* date.
 
 After any change that affects how this workspace is set up or used (repos, BMAD config, scripts,
 conventions, planning milestones), use the `docs-update` skill to refresh `CLAUDE.md`, `README.md` and
