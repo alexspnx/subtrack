@@ -14,7 +14,7 @@ from the template (ST-001 done) and the API contract is defined (ST-003 done), b
 
 | Repo | State |
 |---|---|
-| `subtrack-backend/` | `main` pushed at `274f94f` (ST-001 fast-forwarded in at `140a405`; ST-003 `29c80ff` merged via PR #1; baseline was `6275905`): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. ST-003 contract doc + fixture in `docs/`. Leftover branch `feat/st-003-contracts-and-recurrence-examples` (local and `origin`) is fully merged. |
+| `subtrack-backend/` | `main` pushed at `dbdfff3` (ST-001 fast-forwarded in at `140a405`; ST-003 `29c80ff` merged via PR #1 at `274f94f`; main-only workflow docs in `dbdfff3`; baseline was `6275905`): Orleans removed, EF Core + Npgsql, `SubTrackDbContext`, `/health`, local Postgres compose, docs rewritten. Build 0 warnings, 86 tests pass, `dotnet format` clean. ST-003 contract doc + fixture in `docs/`. Leftover branch `feat/st-003-contracts-and-recurrence-examples` (local and `origin`) is fully merged. |
 | `subtrack-web/` | Empty (no commits, nothing to push). |
 | `subtrack-ios/` | Empty (no commits, nothing to push). |
 | `subtrack-android/` | Empty (no commits, nothing to push). |
