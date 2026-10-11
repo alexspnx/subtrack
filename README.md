@@ -38,7 +38,10 @@ subtrack/
 ├── scripts/
 │   └── clone-repos.mjs     # clones / updates / reports on the project repos
 ├── docs/
-│   └── workspace.md        # multi-repo rules that BMAD workflows follow
+│   ├── workspace.md        # multi-repo rules that BMAD workflows follow
+│   ├── subtrack-project-plan.md  # product and engineering brief (requirements, domain rules, milestones)
+│   ├── template-mapping.md # backend template inspection: real paths, verified commands, gaps
+│   └── decisions/          # architecture decision records (ADRs)
 ├── _bmad/                  # BMAD install (managed by the installer); overrides in _bmad/custom/
 ├── _bmad-output/           # BMAD artifacts: planning-artifacts/, implementation-artifacts/
 ├── .claude/skills/         # BMAD skills (bmad-*) and workspace skills (docs-update)
@@ -47,12 +50,14 @@ subtrack/
 
 ## Project repos
 
-| Folder | Purpose | Remote |
-|---|---|---|
-| `subtrack-backend/` | Backend API | `git@github.com:alexspnx/subtrack-backend.git` |
-| `subtrack-web/` | Web app | `git@github.com:alexspnx/subtrack-web.git` |
-| `subtrack-ios/` | iOS app | `git@github.com:alexspnx/subtrack-ios.git` |
-| `subtrack-android/` | Android app | `git@github.com:alexspnx/subtrack-android.git` |
+| Folder | Purpose | Stack | Remote |
+|---|---|---|---|
+| `subtrack-backend/` | Backend API | .NET 10 ASP.NET Core, EF Core + PostgreSQL, ASP.NET Core Identity | `git@github.com:alexspnx/subtrack-backend.git` |
+| `subtrack-web/` | Web app | TypeScript, React + Vite SPA | `git@github.com:alexspnx/subtrack-web.git` |
+| `subtrack-ios/` | iOS app | Swift, SwiftUI (iOS 17+) | `git@github.com:alexspnx/subtrack-ios.git` |
+| `subtrack-android/` | Android app | Kotlin, Jetpack Compose (API 26+) | `git@github.com:alexspnx/subtrack-android.git` |
+
+Stack choices and their reasons are in [`docs/decisions/`](docs/decisions/). All four repos are still empty.
 
 To add a repo, add an entry to `repos.json` (`dir`, `url`, optional `branch`) and run the clone script.
 

@@ -12,10 +12,13 @@ Prefer the built-in Read, Grep, and Glob tools over Bash commands for searching 
 
 | Folder | Purpose | Stack |
 |---|---|---|
-| `subtrack-backend/` | Backend API (contract owner for all clients) | TBD (empty repo) |
-| `subtrack-web/` | Web app | TBD (empty repo) |
-| `subtrack-ios/` | iOS app | TBD (empty repo) |
-| `subtrack-android/` | Android app | TBD (empty repo) |
+| `subtrack-backend/` | Backend API (contract owner for all clients) | .NET 10 ASP.NET Core WebAPI (no Orleans), EF Core + PostgreSQL, ASP.NET Core Identity; from template `in-real-life-backend-example/` (empty repo, not bootstrapped yet) |
+| `subtrack-web/` | Web app | TypeScript, React + Vite SPA (empty repo) |
+| `subtrack-ios/` | iOS app | Swift, SwiftUI, iOS 17+ (empty repo) |
+| `subtrack-android/` | Android app | Kotlin, Jetpack Compose, API 26+ (empty repo) |
+
+Key docs: product brief `docs/subtrack-project-plan.md`, backend template mapping `docs/template-mapping.md`,
+decisions `docs/decisions/`. Read the relevant ones before work, not all of them.
 
 Each project repo has its own `CLAUDE.md` / `AGENTS.md`. Read it before changing that repo; its rules win
 for code inside it.
